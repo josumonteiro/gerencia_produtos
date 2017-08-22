@@ -35,6 +35,14 @@ public class Produto {
         this.nome = nome;
     }
 
+    public Date getDatacadastro() {
+        return datacadastro;
+    }
+
+    public void setDatacadastro(Date datacadastro) {
+        this.datacadastro = datacadastro;
+    }
+
     public String getCategoria() {
         return categoria;
     }
