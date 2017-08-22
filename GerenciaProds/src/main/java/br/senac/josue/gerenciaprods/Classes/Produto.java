@@ -16,9 +16,6 @@ public class Produto {
     private String descricao, nome, categoria;
     private double valorCompra, valorVenda;
 
-    public int getIdProd() {
-        return idProd;
-    }
 
     public String getDescricao() {
         return descricao;
