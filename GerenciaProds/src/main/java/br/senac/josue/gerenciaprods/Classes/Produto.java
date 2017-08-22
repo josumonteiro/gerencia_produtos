@@ -1,5 +1,7 @@
 package br.senac.josue.gerenciaprods.Classes;
 
+import java.util.Date;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,14 +17,7 @@ public class Produto {
     private int idProd;
     private String descricao, nome, categoria;
     private double valorCompra, valorVenda;
-
-    public int getIdProd() {
-        return idProd;
-    }
-
-    public void setIdProd(int idProd) {
-        this.idProd = idProd;
-    }
+    private Date datacadastro;
 
     public String getDescricao() {
         return descricao;
@@ -38,6 +33,14 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Date getDatacadastro() {
+        return datacadastro;
+    }
+
+    public void setDatacadastro(Date datacadastro) {
+        this.datacadastro = datacadastro;
     }
 
     public String getCategoria() {
