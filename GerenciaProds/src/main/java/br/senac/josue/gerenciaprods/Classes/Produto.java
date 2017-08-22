@@ -20,10 +20,6 @@ public class Produto {
         return idProd;
     }
 
-    public void setIdProd(int idProd) {
-        this.idProd = idProd;
-    }
-
     public String getDescricao() {
         return descricao;
     }
