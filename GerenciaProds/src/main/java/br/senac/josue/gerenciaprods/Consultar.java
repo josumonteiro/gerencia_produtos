@@ -212,12 +212,27 @@ public class Consultar extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        
-        if (alterarProduto == null || !alterarProduto.isDisplayable()) {
-            alterarProduto = new Alterar();
-        }
-        alterarProduto.toFront();
         
-        int linha = br.senac. //getSelectedRow();
+        
+        int linha = Consultar.tabela1.getSelectedRow();
+        
+         if (linha >= 0) {
+            //saindo da tela de clientes e indo pra tela de editar cliente
+            if (alterarProduto == null || !alterarProduto.isDisplayable()) {
+            alterarProduto = new Alterar();
+             }
+            alterarProduto.toFront();
+                        
+            String nome = (String) Consultar.tabela1.getValueAt(linha, 1);
+
+            try {
+                //jogando os dados do cliente nas caixas de texto da tela de edição
+                ServicoProduto.procurarProduto(nome);
+            }  catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Falha ao obter lista de Produtos!!!");
+             }    
+
+        }
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -268,6 +283,6 @@ public class Consultar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTable tabela1;
+    public static javax.swing.JTable tabela1;
     // End of variables declaration//GEN-END:variables
 }
