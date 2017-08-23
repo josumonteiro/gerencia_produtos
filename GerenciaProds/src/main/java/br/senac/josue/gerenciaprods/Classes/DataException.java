@@ -10,8 +10,18 @@ package br.senac.josue.gerenciaprods.Classes;
  * @author rafael.rsilva22
  */
 public class DataException extends Exception {
-    
-    public DataException (String message){
-        super (message);
+
+    public DataException(String message) {
+        super(message);
+    }
+
+    //Construtor que permite informar uma mensagem de erro e uma exception base
+    public DataException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    //Construtor que permite informar uma exception base
+    public DataException(Throwable cause) {
+        super(cause);
     }
 }
