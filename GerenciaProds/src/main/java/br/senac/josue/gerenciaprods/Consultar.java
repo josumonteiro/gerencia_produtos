@@ -22,9 +22,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Consultar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
+    Alterar alterarProduto = null;
+   
     public Consultar() {
         initComponents();
     }
@@ -181,13 +180,10 @@ public class Consultar extends javax.swing.JFrame {
             listaPesquisa = ServicoProduto.procurarProduto(jTextField2.getText());  // jTextField2.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Falha ao obter lista de Produtos!!!");
-        }
-           
-        
+        }                   
             
          Object[] linha = new Object[6];
-
-       
+      
             
             
         DefaultTableModel model = (DefaultTableModel) tabela1.getModel();
@@ -201,11 +197,10 @@ public class Consultar extends javax.swing.JFrame {
 
             linha[0] = listaPesquisa.get(i).getNome();
             linha[1] = listaPesquisa.get(i).getDescricao();
-            linha[2] = listaPesquisa.get(i).getValorCompra());
-            linha[3] = listaPesquisa.get(i).getEmail();
-            linha[4] = listaPesquisa.get(i).getTelefone();
-            linha[5] = listaPesquisa.get(i).getId();
-
+            linha[2] = listaPesquisa.get(i).getValorCompra();
+            linha[3] = listaPesquisa.get(i).getValorVenda();
+            linha[4] = listaPesquisa.get(i).getCategoria();
+            
             //adiciona o object[] linha, já com os dados do clientes copiados, para a tabela
             model.addRow(linha);
 
@@ -216,7 +211,14 @@ public class Consultar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+       
+        if (alterarProduto == null || !alterarProduto.isDisplayable()) {
+            alterarProduto = new Alterar();
+        }
+        alterarProduto.toFront();
+        
+        int linha = br.senac. //getSelectedRow();
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
