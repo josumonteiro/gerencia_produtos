@@ -217,6 +217,8 @@ public class Consultar extends javax.swing.JFrame {
         }
         alterarProduto.toFront();
         
+        int linha = br.senac. //getSelectedRow();
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
