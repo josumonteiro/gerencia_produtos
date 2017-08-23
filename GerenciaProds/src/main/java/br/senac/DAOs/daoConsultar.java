@@ -49,25 +49,20 @@ public class daoConsultar {
             //Itera por cada item do resultado
             while (result.next()) {
                 //Se a lista não foi inicializada, a inicializa
-                if (listaClientes == null) {
-                    listaClientes = new ArrayList<>();
+                if (listaProdutos == null) {
+                    listaProdutos = new ArrayList<>();
                 }
                 //Cria uma instância de Cliente e popula com os valores do BD
-                Cliente cliente = new Cliente();
-                cliente.setId(result.getInt("cliente_id"));
-                cliente.setNome(result.getString("nome"));
-                cliente.setCpf(Long.toString(result.getLong("cpf")));
-                cliente.setCep(Integer.toString(result.getInt("cep")));
-                cliente.setEndereco(result.getString("endereco"));
-                cliente.setCidade(result.getString("cidade"));
-                cliente.setGenero(result.getString("sexo"));
-                cliente.setEstado(result.getString("estado"));
-                cliente.setTelefone(result.getString("telefone"));
-                cliente.setEmail(result.getString("email"));
-                Date d = new Date(result.getTimestamp("data_nasc").getTime());
-                cliente.setDataNascimento(d);
+                Produto produto = new Produto();
+                produto.setNome(result.getString("nome"));
+                produto.setDescricao(result.getString("descricao"));
+                produto.setValorCompra(result.getDouble("vl_compra"));
+                produto.setValorVenda(result.getDouble("vl_venda"));
+                produto.setCategoria(result.getString("categoria"));
+                Date d = new Date(result.getTimestamp("dt_inclusao").getTime());
+                produto.setDatacadastro(d);
                 //Adiciona a instância na lista
-                listaClientes.add(cliente);
+                listaProdutos.add(produto);
             }
         } finally {
             //Se o result ainda estiver aberto, realiza seu fechamento
@@ -84,5 +79,6 @@ public class daoConsultar {
             }
         }
         //Retorna a lista de clientes do banco de dados
-        return listaClientes;
+        return listaProdutos;
     }
+}
