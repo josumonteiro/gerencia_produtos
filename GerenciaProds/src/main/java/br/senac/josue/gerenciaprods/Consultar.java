@@ -5,6 +5,17 @@
  */
 package br.senac.josue.gerenciaprods;
 
+import br.senac.josue.gerenciaprods.Classes.DataException;
+import br.senac.josue.gerenciaprods.Classes.Produto;
+import br.senac.josue.gerenciaprods.Classes.ProdutoException;
+import br.senac.josue.gerenciaprods.Classes.ServicoProduto;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author josue.minacio
@@ -32,9 +43,10 @@ public class Consultar extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,8 +61,13 @@ public class Consultar extends javax.swing.JFrame {
         });
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -69,7 +86,7 @@ public class Consultar extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabela1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,14 +126,18 @@ public class Consultar extends javax.swing.JFrame {
 
         jButton3.setText("Deletar");
 
+        jButton4.setText("Alterar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2))
@@ -131,7 +152,8 @@ public class Consultar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -145,6 +167,48 @@ public class Consultar extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       List<Produto> listaPesquisa = new ArrayList<Produto>();
+       
+       
+        try {
+            listaPesquisa = ServicoProduto.procurarProduto(jTextField2.getText());  // jTextField2.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Falha ao obter lista de Produtos!!!");
+        }
+           
+        
+            
+         Object[] linha = new Object[6];
+
+       
+            
+            
+        DefaultTableModel model = (DefaultTableModel) tabela1.getModel();
+        //deixa a tabela com 0 linhas
+        model.setRowCount(0);
+
+        //laço para transformar as informações do cliente em object ( com o nome linha[], criado posteriormente )
+        
+
+        for (int i = 0; i < listaPesquisa.size(); i++) {
+
+            linha[0] = listaPesquisa.get(i).getNome();
+            linha[1] = listaPesquisa.get(i).getDescricao();
+            linha[2] = listaPesquisa.get(i).getValorCompra());
+            linha[3] = listaPesquisa.get(i).getEmail();
+            linha[4] = listaPesquisa.get(i).getTelefone();
+            linha[5] = listaPesquisa.get(i).getId();
+
+            //adiciona o object[] linha, já com os dados do clientes copiados, para a tabela
+            model.addRow(linha);
+
+        }
+        
+            
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,10 +252,11 @@ public class Consultar extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tabela1;
     // End of variables declaration//GEN-END:variables
 }
