@@ -24,7 +24,7 @@ public class ServicoProduto {
 
         try {
             //Realiza a chamada de inserção na fonte de dados
-            daoProduto.inserir(produto);
+            daoCadastrar.inserir(produto);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
@@ -73,6 +73,7 @@ public class ServicoProduto {
     }
 
     //Exclui o cliente com ID informado do DB
+    /*
     public static void excluirProduto(Integer id)
             throws ProdutoException, DataException {
         try {
@@ -84,5 +85,5 @@ public class ServicoProduto {
             e.printStackTrace();
             throw new DataException("Erro na fonte de dados", e);
         }
-    }
+    }*/
 }

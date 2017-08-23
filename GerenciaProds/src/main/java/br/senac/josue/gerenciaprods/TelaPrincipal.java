@@ -5,12 +5,15 @@
  */
 package br.senac.josue.gerenciaprods;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author rafael.rsilva22
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    Cadastrar cadastrarProduto = null;
     /**
      * Creates new form TelaPrincipal
      */
@@ -35,6 +38,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Cadastro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Consulta");
 
@@ -87,6 +95,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (cadastrarProduto == null || !cadastrarProduto.isDisplayable()) {
+            cadastrarProduto = new Cadastrar();
+        }
+        cadastrarProduto.toFront();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
