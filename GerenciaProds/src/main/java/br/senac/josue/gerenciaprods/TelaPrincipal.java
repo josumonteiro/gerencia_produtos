@@ -116,6 +116,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (consultarProd == null || !consultarProd.isDisplayable()) {
             consultarProd = new Consultar();
+            jPanel1.add(consultarProd);
         }
         consultarProd.toFront();
     }//GEN-LAST:event_jButton2ActionPerformed

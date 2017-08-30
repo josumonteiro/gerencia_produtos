@@ -7,6 +7,7 @@ package br.senac.josue.gerenciaprods.Classes;
 
 import br.senac.DAOs.daoCadastrar;
 import br.senac.DAOs.daoConsultar;
+import br.senac.DAOs.daoExcluir;
 import java.util.List;
 
 /**
@@ -72,18 +73,27 @@ public class ServicoProduto {
         }
     }
 
+    public static Produto obterProduto(Integer id)
+            throws ProdutoException, DataException {
+        try {
+            //Retorna o cliente obtido com o DAO
+            return daoConsultar.obter(id);
+        } catch (Exception e) {
+            throw new DataException("Erro na fonte de dados", e);
+        }
+    }
+
     //Exclui o cliente com ID informado do DB
-    /*
     public static void excluirProduto(Integer id)
             throws ProdutoException, DataException {
         try {
             //Solicita ao DAO a exclusão do cliente informado
-            daoProduto.excluir(id);
+            daoExcluir.excluir(id);
         } catch (Exception e) {
             //Imprime qualquer erro técnico no console e devolve
             //uma exceção e uma mensagem amigável a camada de visão
             e.printStackTrace();
             throw new DataException("Erro na fonte de dados", e);
         }
-    }*/
+    }
 }
